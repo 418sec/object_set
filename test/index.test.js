@@ -27,4 +27,9 @@ describe('object_set', () => {
     let srcObj = set({}, ['b', 'b', 'a'], 'a');
     assert.equal(JSON.stringify(srcObj), JSON.stringify(estObj));
   });
+  it('prototype pollution check', () => {
+    let srcObj = {};
+    set(srcObj, ['__proto__', 'polluted'], true);
+    assert.equal({}.polluted, undefined);
+  });
 });
